@@ -29,8 +29,11 @@ public class Teacher implements Parcelable {
         mLastLogin = lastLogin;
         mLesson = lesson;
     }
-    public Teacher(String nameFirst, String nameLast, String emailAddress, Uri imagePath, String password, String lastLogin, String lesson){
+    public Teacher(){
         this(-1, "", "","",null,"","","");
+    }
+    public Teacher(String nameFirst, String nameLast, String emailAddress, Uri imagePath, String password, String lastLogin, String lesson){
+        this(-1, nameFirst, nameLast, emailAddress, imagePath, password, lastLogin,lesson);
     }
     private Teacher(Parcel source){
         mId = source.readInt();
@@ -42,6 +45,9 @@ public class Teacher implements Parcelable {
         mLastLogin = source.readString();
         mLesson = source.readString();
     }
+    public int getId(){
+    return mId;
+}
 
     public String getNameFirst() {
         return mNameFirst;

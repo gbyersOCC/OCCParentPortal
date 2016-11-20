@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OCC Parent Portal</string>
+    <string name="home_display_name">%1$2s guesses</string>
 </resources>
