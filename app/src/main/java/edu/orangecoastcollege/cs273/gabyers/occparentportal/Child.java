@@ -73,6 +73,18 @@ public class Child implements Parcelable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Child) || obj == null) {
+            return false;
+        }
+        else
+            return mId == ((Child) obj).getId()
+            && mNameFirst.equals(((Child) obj).getmNameFirst())
+            && mNameLast.equals(((Child) obj).getmNameLast())
+            && mImagePath.toString().equals(((Child) obj).getImagePath().toString());
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }

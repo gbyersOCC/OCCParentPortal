@@ -17,14 +17,24 @@ public class Parent implements Parcelable {
     private String mNameFirst;
     private String mNameLast;
     private String mEmailAddress;
-    private int mPhoneNumber;
+    private long mPhoneNumber;
     private Uri mImagePath;
     private long mLastLogin;
     private ArrayList<Child> children;
 
+    public Parent() {
+        mId = -1;
+        mUsername = "";
+        mNameFirst = "";
+        mNameLast = "";
+        mEmailAddress = "";
+        mPhoneNumber = 0l;
+        children = new ArrayList<>();
+    }
+
     public Parent(int id, String username, String firstName,
                   String lastName, String emailAddress,
-                  int phoneNumber, Uri imagePath, long lastLogin) {
+                  long phoneNumber, Uri imagePath, long lastLogin) {
 
         mId = id;
         mUsername = username;
@@ -38,7 +48,7 @@ public class Parent implements Parcelable {
     }
 
     public Parent(String username, String firstName, String lastName,
-                  String emailAddress, int phoneNumber, Uri imagePath,
+                  String emailAddress, long phoneNumber, Uri imagePath,
                   long lastLogin) {
 
         this(-1, username, firstName, lastName, emailAddress, phoneNumber,
@@ -52,9 +62,11 @@ public class Parent implements Parcelable {
         mNameFirst = source.readString();
         mNameLast = source.readString();
         mEmailAddress = source.readString();
-        mPhoneNumber = source.readInt();
+        mPhoneNumber = source.readLong();
         mImagePath = Uri.parse(source.readString());
         mLastLogin = source.readLong();
+        children = new ArrayList<>();
+        source.readTypedList(children, Child.CREATOR);
     }
 
     public int getId() {
@@ -93,11 +105,11 @@ public class Parent implements Parcelable {
         mEmailAddress = emailAddress;
     }
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return mPhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         mPhoneNumber = phoneNumber;
     }
 
@@ -126,6 +138,24 @@ public class Parent implements Parcelable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Parent)
+                || ((Parent) obj).getChildren().size() != this.getChildren().size()){
+            return false;
+        }
+        else
+            return mId == ((Parent) obj).getId()
+            && mUsername.equals(((Parent) obj).getUsername())
+            && mNameFirst.equals(((Parent) obj).getNameFirst())
+            && mNameLast.equals(((Parent) obj).getNameLast())
+            && mEmailAddress.equals(((Parent) obj).getEmailAddress())
+            && mPhoneNumber == ((Parent) obj).getPhoneNumber()
+            && mImagePath.toString().equals(((Parent) obj).getImagePath().toString())
+            && mLastLogin == ((Parent) obj).getLastLogin()
+            && children.equals(((Parent) obj).getChildren());
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -138,9 +168,10 @@ public class Parent implements Parcelable {
         dest.writeString(mNameFirst);
         dest.writeString(mNameLast);
         dest.writeString(mEmailAddress);
-        dest.writeInt(mPhoneNumber);
+        dest.writeLong(mPhoneNumber);
         dest.writeString(mImagePath.toString());
         dest.writeLong(mLastLogin);
+        dest.writeTypedList(children);
     }
     public static final Parcelable.Creator<Parent> CREATOR = new Parcelable.Creator<Parent>(){
         @Override

@@ -199,7 +199,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String first = cursor.getString(2);
                 String last = cursor.getString(3);
                 String email = cursor.getString(4);
-                int phoneNumber = cursor.getInt(5);
+                long phoneNumber = cursor.getLong(5);
                 Uri imagePath = Uri.parse(cursor.getString(6));
                 long lastLogin = cursor.getLong(7);
 
