@@ -30,7 +30,7 @@ public class Teacher implements Parcelable {
         mLesson = lesson;
     }
     public Teacher(){
-        this(-1, "", "","",null,"","","");
+        this(-1, "", "","",Uri.parse("emptyString"),"","","");
     }
     public Teacher(String nameFirst, String nameLast, String emailAddress, Uri imagePath, String password, String lastLogin, String lesson){
         this(-1, nameFirst, nameLast, emailAddress, imagePath, password, lastLogin,lesson);
@@ -123,6 +123,18 @@ public class Teacher implements Parcelable {
         dest.writeString(mLesson);
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || !(obj instanceof Teacher))return false;
+        else{
+            Teacher teacherObj = (Teacher)obj;
+            return(teacherObj.getId() == this.getId()&&teacherObj.getNameFirst().equals(this.getNameFirst())&&teacherObj.getNameLast().equals(this.getNameLast())
+            &&teacherObj.getEmailAddress().equals(this.getEmailAddress())&&teacherObj.getImagePath().equals(this.getImagePath())&&teacherObj.getPassword().equals(this.getPassword())&&
+            teacherObj.getLastLogin().equals(this.getLastLogin())&&teacherObj.getLesson().equals(this.getLesson()));
+        }
+    }
+
     public static final Parcelable.Creator<Teacher> CREATOR = new Parcelable.Creator<Teacher>(){
 
         @Override

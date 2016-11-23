@@ -13,11 +13,16 @@ import static junit.framework.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 public class TeacherTestInstrumented {
-//
+
    @Test
-    public void writeToParcel(Parcel dest, int flags) {
-  Teacher teachObj = new Teacher();
+    public void writeToParcelTest() {
+
+        Teacher teachObj = new Teacher();
+
+       //get a destination Parcel object
        Parcel parcel = Parcel.obtain();
+
+       //call actual method that is being tested.
        teachObj.writeToParcel(parcel, 0);
 
        parcel.setDataPosition(0);
