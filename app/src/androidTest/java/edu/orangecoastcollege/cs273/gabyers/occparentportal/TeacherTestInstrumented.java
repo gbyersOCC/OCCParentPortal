@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 public class TeacherTestInstrumented {
-
+//
    @Test
     public void writeToParcel(Parcel dest, int flags) {
   Teacher teachObj = new Teacher();
