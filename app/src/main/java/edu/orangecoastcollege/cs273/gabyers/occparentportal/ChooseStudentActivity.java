@@ -9,6 +9,10 @@ import android.widget.ListView;
 
 import java.util.List;
 
+
+/**
+ * Controller class that allows user to pick students from a List
+ */
 public class ChooseStudentActivity extends ListActivity{
 
     //user interface widgets
