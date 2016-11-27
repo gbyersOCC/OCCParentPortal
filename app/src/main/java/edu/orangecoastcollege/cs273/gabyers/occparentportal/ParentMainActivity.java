@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ParentMainActivity extends Activity {
+public class ParentMainActivity extends AppCompatActivity{
 
     Button viewClassStreamButton;
     @Override

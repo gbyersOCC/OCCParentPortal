@@ -47,15 +47,16 @@
             android:text="@string/view_profile_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button10"
             android:elevation="4dp"
-            android:onClick="viewProfileDetails" />
+            android:onClick="viewProfileDetails"
+            android:id="@+id/profile_details_button" />
 
         <Button
-            android:text="Button"
+            android:text="@string/add_drdp_results_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button9" />
+            android:onClick="pickStudentClick"
+            android:id="@+id/add_drdp_button" />
 
         <Button
             android:text="Button"
@@ -66,20 +67,21 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button7" />
+            android:id="@+id/button7"
+            android:text="BUTTON" />
     </LinearLayout>
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
         android:layout_below="@+id/imageView"
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:id="@+id/name_text_view" />
 
 </RelativeLayout>

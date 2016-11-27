@@ -15,7 +15,7 @@ import android.widget.VideoView;
  * Created by gabye on 11/26/2016.
  */
 
-public class StreamClassVideo extends Activity{
+public class StreamClassVideo extends AppCompatActivity{
 
     VideoView videoView;
     ProgressDialog progressDlog;

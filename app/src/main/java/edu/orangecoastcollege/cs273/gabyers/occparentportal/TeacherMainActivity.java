@@ -2,12 +2,15 @@ package edu.orangecoastcollege.cs273.gabyers.occparentportal;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.support.annotation.AnyRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,10 +25,26 @@ public class TeacherMainActivity extends AppCompatActivity {
     private List<Teacher> teacherList;
     private List<Teacher> teacherListB;
 
+    //interface widgets
+    private ImageView picImageView;
+    private TextView nameTextView;
+    private Button profileDetailsButton;
+    private Button addDRDPButton;
+
+    //next two buttons have no name set in interface
+    private Button noNameButton;
+    private Button noNameButton2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_main);
+
+        //obtain reference to all user widgets
+        picImageView = (ImageView) findViewById(R.id.imageView);
+        nameTextView = (TextView) findViewById(R.id.name_text_view);
+        profileDetailsButton = (Button) findViewById(R.id.profile_details_button);
+        addDRDPButton = (Button) findViewById(R.id.add_drdp_button);
 
         //(Temp)create a list of Teachers for the testing of DBHelper methods
         teacherList = new ArrayList<>();
@@ -69,6 +88,12 @@ public class TeacherMainActivity extends AppCompatActivity {
         teacherListB = mDatabase.getAllTeachers();
 
 
+    }
+    public void pickStudentClick(View view){
+
+        //load activity that inflates a list view and allows user to pick a student from it
+        Intent pickStudentIntent = new Intent(this, ChooseStudentActivity.class);
+        startActivity(pickStudentIntent);
     }
     /**
      * Method builds a correct Uri type image path to picture
