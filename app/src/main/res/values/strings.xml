@@ -2,4 +2,12 @@
     <string name="app_name">OCC Parent Portal</string>
     <string name="home_display_name">%1$2s guesses</string>
     <string name="add_drdp_results_button">Add DRDP Results</string>
+    <string name="occ_title">OCC PARENT PORTAL</string>
+    <string name="parent_home_title">%1$2s Base Portal</string>
+    <string name="class_stream_button">Live Stream of Class</string>
+    <string name="view_profile_button">View %1$2s Profile</string>
+
+    <string name="title_activity_fullscreen">FullscreenWelcomeActivity</string>
+    <string name="sign_in">Sign In!</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.orangecoastcollege.cs273.gabyers.occparentportal.TeacherMainActivity"
+    tools:context="edu.orangecoastcollege.cs273.gabyers.occparentportal.ParentMainActivity"
     style="@style/Theme.AppCompat.Light">
 
     <TextView
@@ -64,9 +64,11 @@
             android:id="@+id/button8" />
 
         <Button
+            android:text="@string/class_stream_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button7" />
+            android:onClick="viewClassStream"
+            android:id="@+id/stream_class_button" />
     </LinearLayout>
 
     <TextView
