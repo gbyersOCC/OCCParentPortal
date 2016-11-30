@@ -5,31 +5,42 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/list_profile_image_view"
-        android:layout_weight="1"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:cropToPadding="false"
+        android:adjustViewBounds="false"
+        android:layout_width="140dp"
+        android:layout_height="115dp"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:animateLayoutChanges="false"
+        android:backgroundTint="?attr/colorButtonNormal"
+        android:divider="?android:attr/listChoiceIndicatorMultiple"
+        android:fadingEdge="horizontal|vertical">
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/list_item_name_textView"
-            android:textSize="20sp" />
+            android:textSize="36sp" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/list_item_age_textView" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"/>
     </LinearLayout>
 
 </LinearLayout>

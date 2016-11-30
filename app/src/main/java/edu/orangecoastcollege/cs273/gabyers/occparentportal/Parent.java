@@ -17,14 +17,14 @@ public class Parent implements Parcelable {
     private String mNameFirst;
     private String mNameLast;
     private String mEmailAddress;
-    private int mPhoneNumber;
+    private String mPhoneNumber;
     private Uri mImagePath;
-    private long mLastLogin;
+    private String mLastLogin;
     private ArrayList<Child> children;
 
     public Parent(int id, String username, String firstName,
                   String lastName, String emailAddress,
-                  int phoneNumber, Uri imagePath, long lastLogin) {
+                  String phoneNumber, Uri imagePath, String lastLogin) {
 
         mId = id;
         mUsername = username;
@@ -38,8 +38,8 @@ public class Parent implements Parcelable {
     }
 
     public Parent(String username, String firstName, String lastName,
-                  String emailAddress, int phoneNumber, Uri imagePath,
-                  long lastLogin) {
+                  String emailAddress, String phoneNumber, Uri imagePath,
+                  String lastLogin) {
 
         this(-1, username, firstName, lastName, emailAddress, phoneNumber,
                 imagePath, lastLogin);
@@ -52,9 +52,9 @@ public class Parent implements Parcelable {
         mNameFirst = source.readString();
         mNameLast = source.readString();
         mEmailAddress = source.readString();
-        mPhoneNumber = source.readInt();
+        mPhoneNumber = source.readString();
         mImagePath = Uri.parse(source.readString());
-        mLastLogin = source.readLong();
+        mLastLogin = source.readString();
     }
 
     public int getId() {
@@ -93,11 +93,11 @@ public class Parent implements Parcelable {
         mEmailAddress = emailAddress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return mPhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         mPhoneNumber = phoneNumber;
     }
 
@@ -109,11 +109,11 @@ public class Parent implements Parcelable {
         mImagePath = imagePath;
     }
 
-    public long getLastLogin() {
+    public String getLastLogin() {
         return mLastLogin;
     }
 
-    public void setLastLogin(long lastLogin) {
+    public void setLastLogin(String lastLogin) {
         mLastLogin = lastLogin;
     }
 
@@ -138,9 +138,9 @@ public class Parent implements Parcelable {
         dest.writeString(mNameFirst);
         dest.writeString(mNameLast);
         dest.writeString(mEmailAddress);
-        dest.writeInt(mPhoneNumber);
+        dest.writeString(mPhoneNumber);
         dest.writeString(mImagePath.toString());
-        dest.writeLong(mLastLogin);
+        dest.writeString(mLastLogin);
     }
     public static final Parcelable.Creator<Parent> CREATOR = new Parcelable.Creator<Parent>(){
         @Override

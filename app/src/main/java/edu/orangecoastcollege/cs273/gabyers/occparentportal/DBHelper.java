@@ -199,9 +199,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 String first = cursor.getString(2);
                 String last = cursor.getString(3);
                 String email = cursor.getString(4);
-                int phoneNumber = cursor.getInt(5);
+                String phoneNumber = cursor.getString(5);
                 Uri imagePath = Uri.parse(cursor.getString(6));
-                long lastLogin = cursor.getLong(7);
+                String lastLogin = cursor.getString(7);
 
                 Parent parent = new Parent(id, username, first, last, email, phoneNumber, imagePath, lastLogin);
 

@@ -62,6 +62,7 @@ public class TeacherMainActivity extends AppCompatActivity {
         teacherc.setNameLast("Johnson");
         teacherd.setNameFirst("Charlie");
         teacherd.setNameLast("Swanson-Johnson");
+
         Uri tempUri = getUriToResource(this, R.drawable.doomflh);
         teacher.setImagePath(tempUri);
         teacherb.setImagePath(tempUri);
