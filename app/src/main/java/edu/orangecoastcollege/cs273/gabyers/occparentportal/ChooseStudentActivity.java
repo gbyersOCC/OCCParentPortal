@@ -20,12 +20,20 @@ public class ChooseStudentActivity extends ListActivity{
 
     private List<Child> mChildList;
     private Context mContext = ChooseStudentActivity.this;
+    private DBHelper mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //get the DBHelper object
+        mDb = new DBHelper(this);
+
+        //for testing: this can be removed if you want database to keep Pet records
+ 
+
         mChooseStudentListView = (ListView)findViewById(R.id.choose_student_listView);
+
 
         setListAdapter(new StudentListAdapter(mContext, R.layout.student_list_item_layout, mChildList));
     }
