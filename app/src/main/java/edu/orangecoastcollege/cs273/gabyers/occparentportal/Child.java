@@ -29,7 +29,7 @@ public class Child {
         mCareRating = careRating;
         mStudioRating = studioRating;
     }
-
+//
     public Child(int age, String nameFirst, String nameLast, Uri imagePath,  float partRating, float attentRating, float careRating, float studioRating) {
       this(-1,age, nameFirst, nameLast, imagePath, 0.0f, 0.0f, 0.0f, 0.0f);
     }
