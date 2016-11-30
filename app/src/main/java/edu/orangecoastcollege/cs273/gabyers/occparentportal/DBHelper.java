@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "OCCParentPortal";
     private static final String DATABASE_TABLE_TEACHER = "Teacher";
     private static final String DATABASE_TABLE_PARENT = "Parent";
+    private static final String DATABASE_TABLE_CHILD = "Child";
     private static final int DATABASE_VERSION = 1;
 
 
@@ -40,6 +41,13 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String PARENT_PHONE_NUMBER = "phonenumber";
     private static final String PARENT_IMAGE_PATH = "imagepath";
     private static final String PARENT_LAST_LOGIN = "lastlogin";
+
+    // DEFINE THE FIELDS (COLUMN NAMES) FOR THE CHILD TABLE
+    private static final String CHILD_KEY_FIELD_ID = "id";
+    private static final String CHILD_AGE = "age";
+    private static final String CHILD_FIRST_NAME = "firstname";
+    private static final String CHILD_LAST_NAME = "lastname";
+    private static final String CHILD_IMAGE_PATH = "imagepath";
 
     public DBHelper(Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -229,6 +237,62 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(PARENT_LAST_LOGIN, parent.getLastLogin());
 
         database.update(DATABASE_TABLE_PARENT, values, PARENT_KEY_FIELD_ID + " = ?", new String[]{String.valueOf(parent.getId())});
+
+        database.close();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////CHILD TABLE METHODS/////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void addChild(Child child){
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(CHILD_AGE, child.getAge());
+        values.put(CHILD_FIRST_NAME, child.getNameFirst());
+        values.put(CHILD_LAST_NAME, child.getNameLast());
+        values.put(CHILD_IMAGE_PATH, child.getImagePath().toString());
+
+        database.insert(DATABASE_TABLE_CHILD, null, values);
+
+        database.close();
+    }
+
+    public ArrayList<Child> getAllChildren(){
+        ArrayList<Child> childrenList = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.query(DATABASE_TABLE_CHILD,
+                new String[]{CHILD_KEY_FIELD_ID, CHILD_AGE, CHILD_FIRST_NAME, CHILD_LAST_NAME, PARENT_IMAGE_PATH},
+                null, null, null, null, null, null);
+
+        if(cursor.moveToFirst()){
+
+            do{
+                int id = cursor.getInt(0);
+                int age = cursor.getInt(1);
+                String first = cursor.getString(2);
+                String last = cursor.getString(3);
+                Uri imagePath = Uri.parse(cursor.getString(4));
+
+                Child child = new Child(id, age, first, last, imagePath);
+
+                childrenList.add(child);
+
+            }while(cursor.moveToNext());
+        }
+        return childrenList;
+    }
+
+    public void updateChild(Child child){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(CHILD_AGE, child.getAge());
+        values.put(PARENT_FIRST_NAME, child.getNameFirst());
+        values.put(PARENT_LAST_NAME, child.getNameLast());
+        values.put(PARENT_IMAGE_PATH, child.getImagePath().toString());
+
+        database.update(DATABASE_TABLE_CHILD, values, CHILD_KEY_FIELD_ID + " = ?", new String[]{String.valueOf(child.getId())});
 
         database.close();
     }
