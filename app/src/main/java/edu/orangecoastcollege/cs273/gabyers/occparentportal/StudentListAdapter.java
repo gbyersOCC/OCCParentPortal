@@ -20,12 +20,12 @@ import java.util.List;
  * Created by gabye on 11/26/2016.
  */
 
-public class StudentListAdapter extends ArrayAdapter<Parent> {
+public class StudentListAdapter extends ArrayAdapter<Child> {
 
     private Context mContext;
     private int mResourceId;
     //list will need changed to Child object
-    private List<Parent> mAllChildren;
+    private List<Child> mAllChildren;
 
     //List Item user interface widgets
     private ImageView listItemImageView;
@@ -33,7 +33,7 @@ public class StudentListAdapter extends ArrayAdapter<Parent> {
     private TextView listItemAgeTextView;
     private TextView listItemIdTextView;
 
-    public StudentListAdapter(Context context, int resourceId, List<Parent> childList) {
+    public StudentListAdapter(Context context, int resourceId, List<Child> childList) {
         super(context, resourceId, childList);
         this.mResourceId = resourceId;
         this.mContext = context;
@@ -42,7 +42,7 @@ public class StudentListAdapter extends ArrayAdapter<Parent> {
     public View getView(int pos, View convertView, ViewGroup parent)
     {
         //need  to change to Child object
-        Parent chosenOne = mAllChildren.get(pos);
+        Child chosenOne = mAllChildren.get(pos);
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(mResourceId, null);
@@ -53,10 +53,10 @@ public class StudentListAdapter extends ArrayAdapter<Parent> {
         listItemIdTextView = (TextView) view.findViewById(R.id.textView3);
 
         listItemImageView.setImageURI(chosenOne.getImagePath());
-        listItemNameTextView.setText(chosenOne.getNameFirst()+ " " + chosenOne.getNameLast());
+        listItemNameTextView.setText("Name: " + chosenOne.getNameFirst()+ " " + chosenOne.getNameLast());
         //chnage to .getAge();
-        listItemAgeTextView.setText(chosenOne.getPhoneNumber());
-        listItemIdTextView.setText(String.valueOf(chosenOne.getId()));
+        listItemAgeTextView.setText("Age: "+chosenOne.getAge());
+        listItemIdTextView.setText("ID Number: " + "00100" + String.valueOf(chosenOne.getId()));
 
 
         return view;

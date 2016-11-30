@@ -48,6 +48,10 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CHILD_FIRST_NAME = "firstname";
     private static final String CHILD_LAST_NAME = "lastname";
     private static final String CHILD_IMAGE_PATH = "imagepath";
+    private static final String CHILD_PARTICIPATION_RATING = "childParticipationRating";
+    private static final String CHILD_ATTENTIVENESS_RATING = "childAttentRating";
+    private static final String CHILD_CARING_RATING = "childCaringRating";
+    private static final String CHILD_STUDIOUS_RATING = "childStudiousRating";
 
     public DBHelper(Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -55,7 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String table = "CREATE TABLE " + DATABASE_TABLE_TEACHER + "("
+        String teacherTable = "CREATE TABLE " + DATABASE_TABLE_TEACHER + "("
                 + TEACHER_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TEACHER_FIRST_NAME + " TEXT, "
                 + TEACHER_LAST_NAME + " TEXT, "
@@ -64,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + TEACHER_LESSON + " TEXT, "
                 + TEACHER_PASSWORD + " TEXT, "
                 + TEACHER_LAST_LOGIN + " TEXT"+ ")";
-        db.execSQL (table);
+        db.execSQL (teacherTable);
 
         String parentTable = "CREATE TABLE " + DATABASE_TABLE_PARENT + "("
                 + PARENT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -76,12 +80,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 + PARENT_IMAGE_PATH + " TEXT, "
                 + PARENT_LAST_LOGIN + " INTEGER" + ")";
         db.execSQL(parentTable);
+
+        String childTable =  "CREATE TABLE " + DATABASE_TABLE_CHILD + "("
+                + CHILD_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + CHILD_AGE + " INTEGER, "
+                + CHILD_FIRST_NAME + " TEXT, "
+                + CHILD_LAST_NAME + " TEXT, "
+                + CHILD_IMAGE_PATH + " TEXT, "
+                + CHILD_PARTICIPATION_RATING + " REAL, "
+                + CHILD_ATTENTIVENESS_RATING + " REAL, "
+                + CHILD_CARING_RATING + " REAL, "
+                + CHILD_STUDIOUS_RATING + " REAL)";
+        db.execSQL(childTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_TEACHER);
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_PARENT);
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_CHILD);
         onCreate(db);
     }
 
@@ -252,6 +269,10 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(CHILD_FIRST_NAME, child.getNameFirst());
         values.put(CHILD_LAST_NAME, child.getNameLast());
         values.put(CHILD_IMAGE_PATH, child.getImagePath().toString());
+        values.put(CHILD_PARTICIPATION_RATING, child.getPartRating());
+        values.put(CHILD_ATTENTIVENESS_RATING, child.getAttentRating());
+        values.put(CHILD_CARING_RATING, child.getCareRating());
+        values.put(CHILD_STUDIOUS_RATING, child.getStudioRating());
 
         database.insert(DATABASE_TABLE_CHILD, null, values);
 
@@ -262,7 +283,8 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Child> childrenList = new ArrayList<>();
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.query(DATABASE_TABLE_CHILD,
-                new String[]{CHILD_KEY_FIELD_ID, CHILD_AGE, CHILD_FIRST_NAME, CHILD_LAST_NAME, PARENT_IMAGE_PATH},
+                new String[]{CHILD_KEY_FIELD_ID, CHILD_AGE, CHILD_FIRST_NAME, CHILD_LAST_NAME, PARENT_IMAGE_PATH, CHILD_PARTICIPATION_RATING,
+                CHILD_ATTENTIVENESS_RATING, CHILD_CARING_RATING, CHILD_STUDIOUS_RATING},
                 null, null, null, null, null, null);
 
         if(cursor.moveToFirst()){
@@ -273,8 +295,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 String first = cursor.getString(2);
                 String last = cursor.getString(3);
                 Uri imagePath = Uri.parse(cursor.getString(4));
+                float partRating = cursor.getFloat(5), attentRating = cursor.getFloat(6),
+                        careRating = cursor.getFloat(7), studiousRating = cursor.getFloat(8);
 
-                Child child = new Child(id, age, first, last, imagePath);
+                Child child = new Child(id, age, first, last, imagePath, partRating, attentRating, careRating, studiousRating);
 
                 childrenList.add(child);
 
@@ -288,9 +312,13 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(CHILD_AGE, child.getAge());
-        values.put(PARENT_FIRST_NAME, child.getNameFirst());
-        values.put(PARENT_LAST_NAME, child.getNameLast());
-        values.put(PARENT_IMAGE_PATH, child.getImagePath().toString());
+        values.put(CHILD_FIRST_NAME, child.getNameFirst());
+        values.put(CHILD_LAST_NAME, child.getNameLast());
+        values.put(CHILD_IMAGE_PATH, child.getImagePath().toString());
+        values.put(CHILD_PARTICIPATION_RATING, child.getPartRating());
+        values.put(CHILD_ATTENTIVENESS_RATING, child.getAttentRating());
+        values.put(CHILD_CARING_RATING, child.getCareRating());
+        values.put(CHILD_STUDIOUS_RATING, child.getStudioRating());
 
         database.update(DATABASE_TABLE_CHILD, values, CHILD_KEY_FIELD_ID + " = ?", new String[]{String.valueOf(child.getId())});
 

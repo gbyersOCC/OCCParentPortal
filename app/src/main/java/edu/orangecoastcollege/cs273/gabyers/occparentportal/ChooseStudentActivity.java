@@ -26,7 +26,7 @@ public class ChooseStudentActivity extends ListActivity{
     private ListView mChooseStudentListView;
 
     //childList will need xhanged to hold Child object <child>
-    private List<Parent> mChildList;
+    private List<Child> mChildList;
     private Context mContext = ChooseStudentActivity.this;
     private DBHelper mDb;
 
@@ -48,7 +48,7 @@ public class ChooseStudentActivity extends ListActivity{
 
         mChildList = new ArrayList<>();
 
-        mChildList = mDb.getAllParents();
+        mChildList = mDb.getAllChildren();
 
         setListAdapter(new StudentListAdapter(mContext, R.layout.student_list_item_layout, mChildList));
     }
@@ -58,7 +58,7 @@ public class ChooseStudentActivity extends ListActivity{
         //upon child object clicked, send that to AddDRDPActivity
 
         //this will need switched back to child
-        Parent selectedChild =  mChildList.get(position);
+        Child selectedChild =  mChildList.get(position);
 
         Intent addPerformaceGlue = new Intent(ChooseStudentActivity.this, AddPerformanceRatings.class);
 
