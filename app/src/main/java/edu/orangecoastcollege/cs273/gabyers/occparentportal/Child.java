@@ -62,6 +62,10 @@ public class Child implements Parcelable{
         }
     };
 
+    public String getNameFull(){
+        return (getNameFirst()+" "+ getNameLast());
+    }
+
     public int getId() {
         return mId;
     }

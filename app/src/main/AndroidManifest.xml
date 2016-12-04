@@ -10,18 +10,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TeacherMainActivity">
+        <activity android:name=".ParentMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ParentMainActivity"/>
+        <activity android:name=".TeacherMainActivity"/>
         <activity android:name=".StreamClassVideo"/>
         <activity android:name=".ChooseStudentActivity"/>
-        <activity android:name=".AddPerformanceRatings">
-        </activity>
+        <activity android:name=".RSSActivity"/>
+        <activity android:name=".AddPerformanceRatings"/>
+
+
+
     </application>
 
 </manifest>

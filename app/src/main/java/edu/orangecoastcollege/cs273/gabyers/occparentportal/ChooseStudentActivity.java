@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  * Controller class that allows user to pick students from a List
  */
@@ -37,12 +38,12 @@ public class ChooseStudentActivity extends ListActivity{
         //get the DBHelper object
         mDb = new DBHelper(this);
 
-        mDb.addParent(new Parent("userName.66","Billy", "Vaugn","","",getUriToResource(this, R.drawable.doomflh),""));
-        mDb.addParent(new Parent("userName.66","Billy", "Vaugn","","",getUriToResource(this, R.drawable.doomflh),""));
-        mDb.addParent(new Parent("userName.66","Billy", "Vaugn","","",getUriToResource(this, R.drawable.doomflh),""));
-        mDb.addParent(new Parent("userName.66","Billy", "Vaugn","","",getUriToResource(this, R.drawable.doomflh),""));
-        mDb.addParent(new Parent("userName.66","Billy", "Vaugn","","",getUriToResource(this, R.drawable.doomflh),""));
- 
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
+        mDb.addChild(new Child( 22,"Billy", "Vaugn",getUriToResource(this, R.drawable.doomflh),0.0f, 0.0f, 0.0f, 0.0f));
 
         mChooseStudentListView = (ListView)findViewById(R.id.choose_student_listView);
 
@@ -55,17 +56,15 @@ public class ChooseStudentActivity extends ListActivity{
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        //upon child object clicked, send that to AddDRDPActivity
+        Child selectedChild = mChildList.get(position);
 
-        //this will need switched back to child
-        Child selectedChild =  mChildList.get(position);
+        Intent deliverChild = new Intent(this,AddPerformanceRatings.class);
+        deliverChild.putExtra("ChildOBJ", selectedChild);
 
-        Intent addPerformaceGlue = new Intent(ChooseStudentActivity.this, AddPerformanceRatings.class);
-
-        addPerformaceGlue.putExtra("ChildOBJ", selectedChild);
-
-        startActivity(addPerformaceGlue);
+        startActivity(deliverChild);
+        finish();
     }
+
 
     public static Uri getUriToResource(@NonNull Context context, @AnyRes int resId)throws Resources.NotFoundException{
         Resources res = context.getResources();

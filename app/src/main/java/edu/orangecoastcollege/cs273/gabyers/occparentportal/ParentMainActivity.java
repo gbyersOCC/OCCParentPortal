@@ -19,9 +19,13 @@ public class ParentMainActivity extends AppCompatActivity{
     }
     public void viewProfileDetails(View view)
     {
+        //receive parent(in on create from log in activity) and pass to a details Activity with intent
         //view Details Button
     }
-
+    public void viewParentRSSFeed(View view){
+        Intent RSSFeedGlue = new Intent(this, RSSActivity.class);
+        startActivity(RSSFeedGlue);
+    }
     public void viewClassStream(View view)
     {
         Intent streamVideoIntent = new Intent(ParentMainActivity.this, StreamClassVideo.class);

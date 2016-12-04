@@ -96,6 +96,10 @@ public class TeacherMainActivity extends AppCompatActivity {
         Intent pickStudentIntent = new Intent(this, ChooseStudentActivity.class);
         startActivity(pickStudentIntent);
     }
+    public void viewParentRSSFeed(View view){
+        Intent RSSFeedGlue = new Intent(this, RSSActivity.class);
+        startActivity(RSSFeedGlue);
+    }
     /**
      * Method builds a correct Uri type image path to picture
      * @param context

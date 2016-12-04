@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_parent_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.orangecoastcollege.cs273.gabyers.occparentportal.ParentMainActivity"
-    style="@style/Theme.AppCompat.Light">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_parent_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="edu.orangecoastcollege.cs273.gabyers.occparentportal.ParentMainActivity"
+                style="@style/Theme.AppCompat.Light"
+                android:background="@color/colorAccent">
 
     <TextView
         android:text="@string/occ_title"
@@ -25,16 +26,6 @@
         android:textColorHighlight="@color/colorAccent"
         android:textSize="18sp" />
 
-    <ImageView
-        app:srcCompat="@drawable/doomflh"
-        android:layout_marginTop="11dp"
-        android:id="@+id/imageView"
-        android:scaleType="fitCenter"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_width="160dp"
-        android:layout_height="160dp" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -43,32 +34,56 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp">
 
-        <Button
-            android:text="@string/view_profile_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button10"
-            android:elevation="4dp"
-            android:onClick="viewProfileDetails" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="83dp"
+            app:srcCompat="@drawable/edit_profile"
+            android:id="@+id/imageView3"
+            android:clickable="false"
+            android:onClick="viewProfileDetails"/>
 
         <Button
-            android:text="Button"
+            android:text="@string/show_local_childcare_centers_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button9" />
+            android:id="@+id/button9"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
+            android:fontFamily="casual"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:text="@string/latest_parent_mag_stream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            tools:text="@string/latest_parent_mag_stream"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="20dp"/>
 
         <Button
-            android:text="Button"
+            android:text="@string/live_rss_feed_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button8" />
+            android:id="@+id/button8"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
+            android:fontFamily="casual"
+            android:textColor="@android:color/holo_orange_dark"
+            android:onClick="viewParentRSSFeed"/>
 
         <Button
             android:text="@string/class_stream_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="viewClassStream"
-            android:id="@+id/stream_class_button" />
+            android:id="@+id/stream_class_button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
+            android:fontFamily="casual"
+            android:textColor="@android:color/holo_red_dark"
+            />
     </LinearLayout>
 
     <TextView
@@ -83,5 +98,14 @@
         android:layout_alignEnd="@+id/imageView"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="18sp" />
+
+    <ImageView
+        app:srcCompat="@drawable/pirate_children"
+        android:id="@+id/imageView"
+        android:scaleType="center"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
