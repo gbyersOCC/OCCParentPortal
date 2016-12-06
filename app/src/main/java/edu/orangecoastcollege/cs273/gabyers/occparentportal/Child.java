@@ -10,7 +10,7 @@ import android.os.Parcelable;
  * Edited by wlee
  */
 
-public class Child implements Parcelable{
+public class Child implements Parcelable {
 
     private int mId;
     private int mAge;
@@ -150,8 +150,8 @@ public class Child implements Parcelable{
 
     public static final Parcelable.Creator<Child> CREATOR = new Parcelable.Creator<Child>() {
         @Override
-        public Child createFromParcel(Parcel in) {
-            return new Child(in);
+        public Child createFromParcel(Parcel source) {
+            return new Child(source);
         }
 
         @Override
