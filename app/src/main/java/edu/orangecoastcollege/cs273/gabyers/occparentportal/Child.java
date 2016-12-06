@@ -7,7 +7,7 @@ import android.os.Parcelable;
 /**
  * Created by dnova_000 on 11/17/2016.
  * and @Grant Byers on 11/30/2016
- *
+ * Edited by wlee
  */
 
 public class Child implements Parcelable{
