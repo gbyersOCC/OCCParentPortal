@@ -11,9 +11,13 @@
 
     <string name="title_activity_fullscreen">FullscreenWelcomeActivity</string>
     <string name="sign_in">Sign In!</string>
-    <string name ="latest_parent_mag_stream">Check out the latest news from ParentMagazine.com
+    <string name="latest_parent_mag_stream">Check out the latest news from ParentMagazine.com
         with the constantly updated RSS feed.</string>
     <string name="live_rss_feed_button">Live RSS Feed!</string>
     <string name="show_local_childcare_centers_button">Show Local ChildCare Centers</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="google_key">AIzaSyDfadYNmPWq0jfnImTzDxeyEla7GvQ-4eM</string>
+
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
 </resources>

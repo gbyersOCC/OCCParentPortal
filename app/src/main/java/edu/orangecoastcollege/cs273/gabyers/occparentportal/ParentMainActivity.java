@@ -17,9 +17,10 @@ public class ParentMainActivity extends AppCompatActivity{
 
         viewClassStreamButton = (Button) findViewById(R.id.stream_class_button);
     }
-    public void viewProfileDetails(View view)
+    public void editProfileDetails(View view)
     {
         //receive parent(in on create from log in activity) and pass to a details Activity with intent
+        //Remember Parent is Parcelable
         //view Details Button
     }
     public void viewParentRSSFeed(View view){

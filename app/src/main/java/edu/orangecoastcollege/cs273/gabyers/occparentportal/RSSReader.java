@@ -59,7 +59,7 @@ public class RSSReader extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         mDialog.dismiss();
         //instantiate RecyclerAdapter class
-        MyRecyclerAdapter recyclerAdapter = new MyRecyclerAdapter(mContext, mAllFeedItemsList);
+        RssRecyclerAdapter recyclerAdapter = new RssRecyclerAdapter(mContext, mAllFeedItemsList);
         //must set LayoutManager attribute
         mRecycler.setLayoutManager(new LinearLayoutManager(mContext));
         //now hook up recyclerView to adapter
