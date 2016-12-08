@@ -7,10 +7,10 @@ import android.os.Parcelable;
 /**
  * Created by dnova_000 on 11/17/2016.
  * and @Grant Byers on 11/30/2016
- *
+ * Edited by wlee
  */
 
-public class Child implements Parcelable{
+public class Child implements Parcelable {
 
     private int mId;
     private int mAge;
@@ -22,7 +22,8 @@ public class Child implements Parcelable{
     private float mCareRating;
     private float mStudioRating;
 
-    public Child(int id, int age, String nameFirst, String nameLast, Uri imagePath, float partRating, float attentRating, float careRating, float studioRating) {
+    public Child(int id, int age, String nameFirst, String nameLast, Uri imagePath,
+                 float partRating, float attentRating, float careRating, float studioRating) {
         mId = id;
         mAge = age;
         mNameFirst = nameFirst;
@@ -34,33 +35,24 @@ public class Child implements Parcelable{
         mStudioRating = studioRating;
     }
 
-    public Child(int age, String nameFirst, String nameLast, Uri imagePath,  float partRating, float attentRating, float careRating, float studioRating) {
+    public Child(int age, String nameFirst, String nameLast, Uri imagePath,
+                 float partRating, float attentRating, float careRating, float studioRating) {
       this(-1,age, nameFirst, nameLast, imagePath, 0.0f, 0.0f, 0.0f, 0.0f);
     }
 
-    protected Child(Parcel in) {
-        mId = in.readInt();
-        mAge = in.readInt();
-        mNameFirst = in.readString();
-        mNameLast = in.readString();
-        mImagePath = in.readParcelable(Uri.class.getClassLoader());
-        mPartRating = in.readFloat();
-        mAttentRating = in.readFloat();
-        mCareRating = in.readFloat();
-        mStudioRating = in.readFloat();
+    protected Child(Parcel source) {
+        mId = source.readInt();
+        mAge = source.readInt();
+        mNameFirst = source.readString();
+        mNameLast = source.readString();
+        mImagePath = Uri.parse(source.readString());
+        mPartRating = source.readFloat();
+        mAttentRating = source.readFloat();
+        mCareRating = source.readFloat();
+        mStudioRating = source.readFloat();
     }
 
-    public static final Creator<Child> CREATOR = new Creator<Child>() {
-        @Override
-        public Child createFromParcel(Parcel in) {
-            return new Child(in);
-        }
 
-        @Override
-        public Child[] newArray(int size) {
-            return new Child[size];
-        }
-    };
 
     public String getNameFull(){
         return (getNameFirst()+" "+ getNameLast());
@@ -149,10 +141,22 @@ public class Child implements Parcelable{
         dest.writeInt(mAge);
         dest.writeString(mNameFirst);
         dest.writeString(mNameLast);
-        dest.writeParcelable(mImagePath, flags);
+        dest.writeString(mImagePath.toString());
         dest.writeFloat(mPartRating);
         dest.writeFloat(mAttentRating);
         dest.writeFloat(mCareRating);
         dest.writeFloat(mStudioRating);
     }
+
+    public static final Parcelable.Creator<Child> CREATOR = new Parcelable.Creator<Child>() {
+        @Override
+        public Child createFromParcel(Parcel source) {
+            return new Child(source);
+        }
+
+        @Override
+        public Child[] newArray(int size) {
+            return new Child[size];
+        }
+    };
 }
