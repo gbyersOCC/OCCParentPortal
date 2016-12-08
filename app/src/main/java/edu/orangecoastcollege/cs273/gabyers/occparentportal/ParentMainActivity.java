@@ -21,6 +21,9 @@ public class ParentMainActivity extends AppCompatActivity{
     {
         //receive parent(in on create from log in activity) and pass to a details Activity with intent
         //Remember Parent is Parcelable
+        Intent editDetailGlue = new Intent(this, EditProfileActivity.class);
+        //editDetailGlue.putExtra("ProfileObj", recievedProfileFromLogin)
+        startActivity(editDetailGlue);
         //view Details Button
     }
     public void viewParentRSSFeed(View view){

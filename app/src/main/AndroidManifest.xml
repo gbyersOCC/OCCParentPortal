@@ -22,12 +22,10 @@
         <activity android:name=".ChooseStudentActivity"/>
         <activity android:name=".RSSActivity"/>
         <activity android:name=".AddPerformanceRatings"/>
-        <activity android:name=".YouTubeActivity">
-        </activity>
-        <activity android:name=".NewsDetailsActivity">
-        </activity>
-        <activity android:name=".EditProfileActivity">
-        </activity>
+        <activity android:name=".NewsDetailsActivity"/>
+        <activity android:name=".YouTubeActivity"/>
+        <activity android:name=".EditProfileActivity"/>
+
     </application>
 
 </manifest>

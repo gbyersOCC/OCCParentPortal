@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 finish();
-                startActivity(new Intent(SplashActivity.this, LogInActivity.class)); // change the name that matches login activity
+              //  startActivity(new Intent(SplashActivity.this, LogInActivity.class)); // change the name that matches login activity
             }
         };
         Timer opening = new Timer();
