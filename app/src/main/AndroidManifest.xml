@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="edu.orangecoastcollege.cs273.gabyers.occparentportal">
+    package="edu.orangecoastcollege.cs273.gabyers.occparentportal">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -22,6 +22,9 @@
         <activity android:name=".ChooseStudentActivity"/>
         <activity android:name=".RSSActivity"/>
         <activity android:name=".AddPerformanceRatings"/>
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".LocationDetailsActivity"/>
+        <activity android:name=".TeacherMainActivity"/>
         <activity android:name=".NewsDetailsActivity"/>
         <activity android:name=".YouTubeActivity"/>
         <activity android:name=".EditProfileActivity"/>

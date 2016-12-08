@@ -24,14 +24,11 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
     // DEFINE THE DATABASE VERSION, NAME, AND TABLE NAMES
     static final String DATABASE_NAME = "OCCParentPortal";
-    private static final String DATABASE_TABLE_TEACHER = "Teacher";
-    private static final String DATABASE_TABLE_PARENT = "Parent";
-    private static final String DATABASE_TABLE_CHILD = "Child";
-    private static final String DATABASE_TABLE_MAP = "Map";
     private static final int DATABASE_VERSION = 1;
 
 
     // DEFINE THE FIELDS (COLUMN NAMES) FOR THE TEACHER TABLE
+    private static final String DATABASE_TABLE_TEACHER = "Teacher";
     private static final String TEACHER_KEY_FIELD_ID = "id";
     private static final String TEACHER_FIRST_NAME = "FirstName";
     private static final String TEACHER_LAST_NAME = "LastName";
@@ -42,6 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TEACHER_LAST_LOGIN = "LastLogin";
 
     // DEFINE THE FIELDS (COLUMN NAMES) FOR THE PARENT TABLE
+    private static final String DATABASE_TABLE_PARENT = "Parent";
     private static final String PARENT_KEY_FIELD_ID = "id";
     private static final String PARENT_USERNAME = "username";
     private static final String PARENT_FIRST_NAME = "firstname";
@@ -52,6 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String PARENT_LAST_LOGIN = "lastlogin";
 
     // DEFINE THE FIELDS (COLUMN NAMES) FOR THE CHILD TABLE
+    private static final String DATABASE_TABLE_CHILD = "Child";
     private static final String CHILD_KEY_FIELD_ID = "id";
     private static final String CHILD_AGE = "age";
     private static final String CHILD_FIRST_NAME = "firstname";
@@ -62,7 +61,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CHILD_CARING_RATING = "childCaringRating";
     private static final String CHILD_STUDIOUS_RATING = "childStudiousRating";
 
-    // DEFINE THE FIELDS (COLUMN NAMES) FOR THE MAP TABLE
+    // DEFINE THE FIELDS (COLUMN NAMES) FOR THE LOCATION TABLE
+    private static final String DATABASE_TABLE_LOCATION = "Location";
     private static final String LOCATIONS_TABLE = "Locations";
     private static final String LOCATIONS_KEY_FIELD_ID = "_id";
     private static final String FIELD_NAME = "name";
@@ -73,6 +73,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String FIELD_PHONE = "phone";
     private static final String FIELD_LATITUDE = "latitude";
     private static final String FIELD_LONGITUDE = "longitude";
+
+    // DEFINE THE FIELDS (COLUMN NAMES) FOR THE SPAWN TABLE
+    private static final String DATABASE_TABLE_SPAWN = "Spawn";
+    private static final String SPAWN_KEY_FIELD_ID = "id";
+    private static final String FIELD_PARENT_ID = "parentId";
+    private static final String FIELD_CHILD_ID = "childId";
+
+
 
     public DBHelper(Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -115,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + CHILD_STUDIOUS_RATING + " REAL" + ")";
         db.execSQL(createChildQuery);
 
-        String createMapQuery = "CREATE TABLE " + LOCATIONS_TABLE + "("
+        String createMapQuery = "CREATE TABLE " + DATABASE_TABLE_LOCATION + "("
                 + LOCATIONS_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + FIELD_NAME + " TEXT, "
                 + FIELD_ADDRESS + " TEXT, "
@@ -126,6 +134,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 + FIELD_LATITUDE + " REAL,"
                 + FIELD_LONGITUDE + " REAL" + ")";
         db.execSQL(createMapQuery);
+
+        String createSpawnQuery = "CREATE TABLE" + DATABASE_TABLE_SPAWN + "("
+                + SPAWN_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FIELD_PARENT_ID + " INTEGER, "
+                + FIELD_CHILD_ID + " INTEGER, "
+                + "FOREIGN KEY(" + FIELD_PARENT_ID + ") REFERENCES "
+                + DATABASE_TABLE_PARENT + "(" + PARENT_KEY_FIELD_ID + "), "
+                + "FOREIGN KEY(" + FIELD_CHILD_ID + ") REFERENCES "
+                + DATABASE_TABLE_CHILD + "(" + CHILD_KEY_FIELD_ID + ")" + ")";
+        db.execSQL(createSpawnQuery);
+
     }
 
     @Override
@@ -133,7 +152,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_TEACHER);
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_PARENT);
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_CHILD);
-        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_MAP);
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_LOCATION);
         onCreate(db);
     }
 
@@ -458,6 +477,7 @@ public class DBHelper extends SQLiteOpenHelper {
         AssetManager manager = mContext.getAssets();
         InputStream inStream;
         try {
+            //TODO: csv file name
             inStream = manager.open(csvFileName);
         } catch (IOException e) {
             e.printStackTrace();
